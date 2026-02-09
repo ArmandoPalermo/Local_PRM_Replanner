@@ -1,0 +1,13 @@
+<launch>
+	#Parametro di localizzazione del package
+	<param name="graph_navigation_path" value="$(find graph_navigation)" />
+	
+	<node name="rviz" pkg="rviz" type="rviz" args="-d $(find graph_navigation)/rviz/config.rviz" required="true" />
+	<node pkg="graph_navigation" type="global_graph_generator.py" name="global_graph_generator" output="screen"/>
+	<node pkg="graph_navigation" type = "ekf_localization.py" name="rkf_loclization" output = "screen"/>
+	<node pkg="graph_navigation" type="diffDrive_robot.py" name="diffDrive_robot" output="screen"/>
+	<node pkg="graph_navigation" type="path_planner.py" name="path_planner" output="screen"/>
+	<node pkg="graph_navigation" type="dynamic_obstacle.py" name="dynamic_obstacle" output="screen"/>
+	<node pkg="graph_navigation" type="obstacle_monitor.py" name="obstacle_monitor" output="screen"/>
+	<node pkg="graph_navigation" type="local_avoidance.py" name="local_avoidance" output="screen"/>
+</launch>
